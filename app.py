@@ -1,6 +1,3 @@
-# Instalações (se necessário no ambiente)
-!pip install dash plotly
-
 import pandas as pd
 import plotly.express as px
 import dash
@@ -10,12 +7,11 @@ from dash.dependencies import Input, Output
 # Leitura dos dados
 df = pd.read_csv('Summer_olympic_Medals.csv')
 df['Country_Name'] = df['Country_Name'].replace('United States', 'United States of America')
-
-# Filtro entre 1992 e 2020
 df = df[(df['Year'] >= 1992) & (df['Year'] <= 2020)]
 
 # Criação do app
 app = dash.Dash(__name__)
+server = app.server  # <- necessário para deploy com gunicorn/Render
 
 # Anos disponíveis
 years = sorted(df['Year'].unique())
