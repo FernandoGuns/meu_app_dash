@@ -94,15 +94,8 @@ def update_graphs(medal_type, selected_year):
     bar_fig = px.bar(df_bar, x='Country_Name', y='Value', color='Country_Name',
                      title=f'{title_suffix} em {selected_year}',
                      color_discrete_sequence=px.colors.qualitative.Set3)
-            
-        # Pizza - país selecionado
-    df_country = df[(df['Country_Name'] == selected_country) & (df['Year'] >= 1992) & (df['Year'] <= 2020)]
-    medals = df_country[['Gold', 'Silver', 'Bronze']].sum()
-    pie_fig = px.pie(names=medals.index, values=medals.values,
-                     title=f'Distribuição de Medalhas de {selected_country} (1992–2020)',
-                     color_discrete_map={'Gold': 'gold', 'Silver': 'silver', 'Bronze': '#cd7f32'})
 
-    return map_fig, area_fig, bar_fig, pie_fig
+    return map_fig, area_fig, bar_fig
 
 # Execução
 if __name__ == '__main__':
